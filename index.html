@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos para Transferencia</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      max-width: 420px;
+      width: 100%;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #666666;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #111111;
+      margin-bottom: 24px;
+    }
+
+    .info-group {
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .label {
+      font-size: 13px;
+      color: #777777;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #222222;
+      word-break: break-all;
+    }
+
+    .clabe-value {
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: #000000;
+    }
+
+    .btn-copy {
+      width: 100%;
+      background-color: #111111;
+      color: #ffffff;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-copy:active {
+      background-color: #333333;
+    }
+
+    .instruction {
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.5;
+      background-color: #f0f4f8;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .instruction span {
+      display: block;
+      margin-top: 4px;
+      font-weight: 600;
+      color: #222222;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="subtitle">Datos de Transferencia</div>
+    <div class="title">MERCADO PAGO</div>
+
+    <div class="info-group">
+      <div class="label">Titular</div>
+      <div class="value">Vanessa Itzel Trejo Lopez</div>
+    </div>
+
+    <div class="info-group">
+      <div class="label">CLABE Interbancaria</div>
+      <div class="value clabe-value" id="clabeNum">72296013847672829</div>
+    </div>
+
+    <button class="btn-copy" onclick="copiarClabe()" id="copyBtn">
+      📋 Copiar Número CLABE
+    </button>
+
+    <div class="instruction">
+      👉 <strong>¿Cómo usar este botón?</strong>
+      <span>Presiónalo para copiar la CLABE y luego pégala dentro de la aplicación de tu banco.</span>
+    </div>
+  </div>
+
+  <script>
+    function copiarClabe() {
+      const clabeText = document.getElementById("clabeNum").innerText;
+      const btn = document.getElementById("copyBtn");
+
+      navigator.clipboard.writeText(clabeText).then(() => {
+        btn.innerText = "¡Copiado con éxito! ✓";
+        btn.style.backgroundColor = "#2e7d32";
+
+        setTimeout(() => {
+          btn.innerText = "📋 Copiar Número CLABE";
+          btn.style.backgroundColor = "#111111";
+        }, 3000);
+      }).catch(err => {
+        alert("No se pudo copiar automáticamente. Por favor, copia el número manualmente.");
+      });
+    }
+  </script>
+
+</body>
+</html>
